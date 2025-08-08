@@ -1,4 +1,3 @@
-// components/Hero.jsx
 import { Github, Linkedin, Mail, Download } from "lucide-react";
 
 const Hero = ({ styles, deviceType }) => {
@@ -78,7 +77,6 @@ const Hero = ({ styles, deviceType }) => {
           </div>
         </div>
 
-        {/* Profile Image - Hidden on Mobile */}
         {!deviceType.isMobile && (
           <div style={styles.profileImageContainer}>
             <div style={styles.profileImageBg}></div>

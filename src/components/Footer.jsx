@@ -1,4 +1,3 @@
-// components/Footer.jsx
 const Footer = ({ styles, deviceType }) => {
   return (
     <footer style={styles.footer}>

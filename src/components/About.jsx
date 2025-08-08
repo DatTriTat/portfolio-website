@@ -1,4 +1,3 @@
-// components/About.jsx
 import { Mail, MapPin, Phone, GraduationCap } from "lucide-react";
 
 const About = ({ styles, deviceType }) => {

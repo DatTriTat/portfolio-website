@@ -1,4 +1,3 @@
-// components/Skills.jsx
 import { Code, Database, Cloud, Terminal } from 'lucide-react';
 
 const Skills = ({ styles, deviceType }) => {

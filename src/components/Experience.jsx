@@ -1,4 +1,3 @@
-// components/Experience.jsx
 import { Calendar, Briefcase } from 'lucide-react';
 
 const Experience = ({ styles, deviceType }) => {

@@ -1,4 +1,3 @@
-// components/Projects.jsx
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import { useState } from "react";
 
@@ -162,7 +161,6 @@ const Projects = ({ styles, deviceType }) => {
             ))}
           </div>
 
-          {/* Left Arrow */}
           {currentPage > 0 && (
             <button
               onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
@@ -175,7 +173,6 @@ const Projects = ({ styles, deviceType }) => {
             </button>
           )}
 
-          {/* Right Arrow */}
           {currentPage < projects.length - 1 && (
             <button
               onClick={() =>
@@ -190,7 +187,6 @@ const Projects = ({ styles, deviceType }) => {
             </button>
           )}
 
-          {/* Dots */}
           <div style={styles.carouselDots}>
             {projects.map((_, index) => (
               <button

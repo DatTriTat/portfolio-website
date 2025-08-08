@@ -16,6 +16,7 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Animation for rotating blurred background blob */
 @keyframes blob-spin {
   0% {
     transform: scale(1) rotate(0deg);

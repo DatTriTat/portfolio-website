@@ -1,5 +1,3 @@
-// styles/styles.js - File styles với responsive support
-
 // Helper function để check kích thước màn hình
 export const getDeviceType = (width) => ({
   isMobile: width <= 768,

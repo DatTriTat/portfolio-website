@@ -1,4 +1,3 @@
-// components/Contact.jsx
 import React, { useState } from 'react';
 import { Github, Linkedin, Mail, Phone } from 'lucide-react';
 
@@ -42,7 +41,6 @@ const Contact = ({ styles, deviceType }) => {
           Feel free to reach out!
         </p>
 
-        {/* Form Container */}
         <div style={styles.formContainer}>
           <input
             type="text"
@@ -85,12 +83,11 @@ const Contact = ({ styles, deviceType }) => {
           </button>
         </div>
 
-        {/* Phone Button */}
-        <div style={{ 
-          ...styles.buttonGroup, 
-          justifyContent: 'center', 
-          marginBottom: '32px', 
-          flexDirection: deviceType.isMobile ? 'column' : 'row' 
+        <div style={{
+          ...styles.buttonGroup,
+          justifyContent: 'center',
+          marginBottom: '32px',
+          flexDirection: deviceType.isMobile ? 'column' : 'row'
         }}>
           <a 
             href="tel:408-805-1757" 
@@ -107,7 +104,6 @@ const Contact = ({ styles, deviceType }) => {
           </a>
         </div>
         
-        {/* Social Links */}
         <div style={{ ...styles.socialLinks, justifyContent: 'center' }}>
           <a 
             href="https://github.com/dattritat" 

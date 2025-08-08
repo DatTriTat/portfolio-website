@@ -1,4 +1,3 @@
-// components/Header.jsx
 import { Menu, X } from 'lucide-react';
 
 const Header = ({ isMenuOpen, setIsMenuOpen, scrolled, styles, deviceType }) => {
@@ -17,10 +16,9 @@ const Header = ({ isMenuOpen, setIsMenuOpen, scrolled, styles, deviceType }) => 
         <div style={styles.navContent}>
           <div style={styles.logo}>Dat Tri Tat</div>
           
-          {/* Desktop Navigation */}
-          <div style={{ 
-            ...styles.navLinks, 
-            display: deviceType.isMobile ? 'none' : 'flex' 
+          <div style={{
+            ...styles.navLinks,
+            display: deviceType.isMobile ? 'none' : 'flex'
           }}>
             {navItems.map((item) => (
               <a
@@ -35,11 +33,10 @@ const Header = ({ isMenuOpen, setIsMenuOpen, scrolled, styles, deviceType }) => 
             ))}
           </div>
           
-          {/* Mobile Menu Button */}
           <button
-            style={{ 
-              ...styles.mobileMenuButton, 
-              display: deviceType.isMobile ? 'block' : 'none' 
+            style={{
+              ...styles.mobileMenuButton,
+              display: deviceType.isMobile ? 'block' : 'none'
             }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -48,15 +45,14 @@ const Header = ({ isMenuOpen, setIsMenuOpen, scrolled, styles, deviceType }) => 
         </div>
       </div>
       
-      {/* Mobile Menu Dropdown */}
       {isMenuOpen && deviceType.isMobile && (
         <div style={styles.mobileMenu}>
           {navItems.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              style={{ ...styles.navLink, fontSize: '18px' }}
-              onClick={() => setIsMenuOpen(false)}
+                style={{ ...styles.navLink, fontSize: '18px' }}
+                onClick={() => setIsMenuOpen(false)}
             >
               {item}
             </a>
