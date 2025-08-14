@@ -40,7 +40,7 @@ const Hero = ({ styles, deviceType }) => {
               Get In Touch
             </a>
             <a
-              href="/DatTriTat-Resume.pdf"
+              href="/DatTriTat_Resume.pdf"
               style={styles.secondaryButton}
               download
               target="_blank"
