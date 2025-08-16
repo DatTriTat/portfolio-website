@@ -1,4 +1,3 @@
-// components/Header.jsx
 import { Menu, X } from 'lucide-react';
 
 const Header = ({ isMenuOpen, setIsMenuOpen, scrolled, styles, deviceType }) => {
@@ -6,9 +5,9 @@ const Header = ({ isMenuOpen, setIsMenuOpen, scrolled, styles, deviceType }) => 
   
   const navStyle = {
     ...styles.nav,
-    backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.8)',
     backdropFilter: 'blur(10px)',
-    boxShadow: scrolled ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none'
+    boxShadow: scrolled ? '0 10px 15px -3px rgba(0, 0, 0, 0.08)' : 'none'
   };
   
   return (
@@ -27,7 +26,7 @@ const Header = ({ isMenuOpen, setIsMenuOpen, scrolled, styles, deviceType }) => 
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 style={styles.navLink}
-                onMouseEnter={(e) => e.target.style.color = '#2563EB'}
+                onMouseEnter={(e) => e.target.style.color = styles.colors.accent}
                 onMouseLeave={(e) => e.target.style.color = '#4B5563'}
               >
                 {item}

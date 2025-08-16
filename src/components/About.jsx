@@ -1,4 +1,3 @@
-// components/About.jsx
 import { Mail, MapPin, Phone, GraduationCap } from "lucide-react";
 
 const About = ({ styles, deviceType }) => {
@@ -15,7 +14,7 @@ const About = ({ styles, deviceType }) => {
           }}
         >
           <div>
-            <div style={{ ...styles.card, backgroundColor: "#F9FAFB" }}>
+            <div style={{ ...styles.card, backgroundColor: "#FFFFFF" }}>
               <div
                 style={{
                   display: "flex",
@@ -24,7 +23,7 @@ const About = ({ styles, deviceType }) => {
                   marginBottom: "16px",
                 }}
               >
-                <GraduationCap size={24} color="#2563EB" />
+                <GraduationCap size={24} color={styles.colors.accent} />
                 <h3 style={{ 
                   fontSize: deviceType.isMobile ? "18px" : "20px", 
                   fontWeight: "600" 
@@ -83,7 +82,7 @@ const About = ({ styles, deviceType }) => {
             <div
               style={{
                 ...styles.card,
-                backgroundColor: "#F9FAFB",
+                backgroundColor: "#FFFFFF",
                 marginBottom: "24px",
               }}
             >
@@ -106,7 +105,7 @@ const About = ({ styles, deviceType }) => {
                 <div
                   style={{ display: "flex", alignItems: "center", gap: "12px" }}
                 >
-                  <Phone size={20} color="#2563EB" />
+                  <Phone size={20} color={styles.colors.accent} />
                   <span style={{ 
                     fontSize: deviceType.isMobile ? "14px" : "16px" 
                   }}>408-805-1757</span>
@@ -114,7 +113,7 @@ const About = ({ styles, deviceType }) => {
                 <div
                   style={{ display: "flex", alignItems: "center", gap: "12px" }}
                 >
-                  <Mail size={20} color="#2563EB" />
+                  <Mail size={20} color={styles.colors.accent} />
                   <span style={{ 
                     fontSize: deviceType.isMobile ? "14px" : "16px",
                     wordBreak: "break-word"
@@ -123,7 +122,7 @@ const About = ({ styles, deviceType }) => {
                 <div
                   style={{ display: "flex", alignItems: "center", gap: "12px" }}
                 >
-                  <MapPin size={20} color="#2563EB" />
+                  <MapPin size={20} color={styles.colors.accent} />
                   <span style={{ 
                     fontSize: deviceType.isMobile ? "14px" : "16px" 
                   }}>San Jose, CA</span>

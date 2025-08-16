@@ -1,4 +1,3 @@
-// components/Skills.jsx
 import { Code, Database, Cloud, Terminal } from 'lucide-react';
 
 const Skills = ({ styles, deviceType }) => {
@@ -19,13 +18,13 @@ const Skills = ({ styles, deviceType }) => {
   
   const getIcon = (category) => {
     switch(category) {
-      case "Programming Languages": return <Code size={20} color="#2563EB" />;
-      case "Web Technologies": return <Terminal size={20} color="#2563EB" />;
-      case "Frameworks & Libraries": return <Database size={20} color="#2563EB" />;
-      case "Technologies": return <Cloud size={20} color="#2563EB" />;
-      case "Developer Tools": return <Terminal size={20} color="#2563EB" />;
-      case "Other Skills": return <Code size={20} color="#2563EB" />;
-      default: return <Code size={20} color="#2563EB" />;
+      case "Programming Languages": return <Code size={20} color={styles.colors.accent} />;
+      case "Web Technologies": return <Terminal size={20} color={styles.colors.accent} />;
+      case "Frameworks & Libraries": return <Database size={20} color={styles.colors.accent} />;
+      case "Technologies": return <Cloud size={20} color={styles.colors.accent} />;
+      case "Developer Tools": return <Terminal size={20} color={styles.colors.accent} />;
+      case "Other Skills": return <Code size={20} color={styles.colors.accent} />;
+      default: return <Code size={20} color={styles.colors.accent} />;
     }
   };
   
@@ -53,8 +52,8 @@ const Skills = ({ styles, deviceType }) => {
                       key={index} 
                       style={styles.skillTag}
                       onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = '#DBEAFE';
-                        e.target.style.color = '#1E40AF';
+                        e.target.style.backgroundColor = '#E5E7EB';
+                        e.target.style.color = '#111827';
                       }}
                       onMouseLeave={(e) => {
                         e.target.style.backgroundColor = '#F3F4F6';
@@ -84,8 +83,8 @@ const Skills = ({ styles, deviceType }) => {
                         key={index} 
                         style={styles.skillTag}
                         onMouseEnter={(e) => {
-                          e.target.style.backgroundColor = '#DBEAFE';
-                          e.target.style.color = '#1E40AF';
+                          e.target.style.backgroundColor = '#E5E7EB';
+                          e.target.style.color = '#111827';
                         }}
                         onMouseLeave={(e) => {
                           e.target.style.backgroundColor = '#F3F4F6';
@@ -113,8 +112,8 @@ const Skills = ({ styles, deviceType }) => {
                         key={index} 
                         style={styles.skillTag}
                         onMouseEnter={(e) => {
-                          e.target.style.backgroundColor = '#DBEAFE';
-                          e.target.style.color = '#1E40AF';
+                          e.target.style.backgroundColor = '#E5E7EB';
+                          e.target.style.color = '#111827';
                         }}
                         onMouseLeave={(e) => {
                           e.target.style.backgroundColor = '#F3F4F6';

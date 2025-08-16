@@ -1,4 +1,3 @@
-// components/Contact.jsx
 import React, { useState } from 'react';
 import { Github, Linkedin, Mail, Phone } from 'lucide-react';
 
@@ -80,6 +79,8 @@ const Contact = ({ styles, deviceType }) => {
               alignSelf: 'center', 
               fontSize: deviceType.isMobile ? '16px' : '18px' 
             }}
+            onMouseEnter={(e) => (e.target.style.background = "linear-gradient(180deg, #ECEFF3 0%, #D5DAE1 100%)")}
+            onMouseLeave={(e) => (e.target.style.background = "linear-gradient(180deg, #F5F7FA 0%, #E5E7EB 100%)")}
           >
             Send
           </button>
@@ -101,6 +102,14 @@ const Contact = ({ styles, deviceType }) => {
               gap: '8px', 
               justifyContent: 'center' 
             }}
+            onMouseEnter={(e) => {
+              e.target.style.borderColor = '#C9CDD3';
+              e.target.style.color = styles.colors.accentStrong;
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.borderColor = '#E5E7EB';
+              e.target.style.color = '#111827';
+            }}
           >
             <Phone size={20} />
             408-805-1757
@@ -120,7 +129,7 @@ const Contact = ({ styles, deviceType }) => {
               justifyContent: 'center',
               transition: 'background-color 0.3s ease'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#DBEAFE'}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E5E7EB'}
             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
           >
             <Github size={24} color="#4B5563" />
@@ -136,7 +145,7 @@ const Contact = ({ styles, deviceType }) => {
               justifyContent: 'center',
               transition: 'background-color 0.3s ease'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#DBEAFE'}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E5E7EB'}
             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
           >
             <Linkedin size={24} color="#4B5563" />

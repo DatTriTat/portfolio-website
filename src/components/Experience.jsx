@@ -1,4 +1,3 @@
-// components/Experience.jsx
 import { Calendar, Briefcase } from 'lucide-react';
 
 const Experience = ({ styles, deviceType }) => {
@@ -6,13 +5,14 @@ const Experience = ({ styles, deviceType }) => {
     company: "Softlogi",
     role: "Software Engineering Intern",
     period: "Jun 2025 – Present",
-    tech: [".NET", "C#", "Blazor", "ASP.NET Boilerplate", "MSSQL", "Redis"],
+    tech: [".NET", "C#", "Blazor", "ASP.NET Boilerplate", "SQL", "Redis", "SQL Server"],
     highlights: [
-      "Built scalable backend services using ABP framework for hospital physician license management",
+      "Developed backend features using ABP framework for a medical credential application",
       "Implemented interactive UI components using Blazor, improving credential submission workflows",
       "Enhanced system stability by 40% through optimized Redis-based state caching",
       "Developed automation scripts to streamline regression testing",
-      "Authored technical documentation and system architecture summaries"
+      "Authored technical documentation and system architecture summaries",
+      "Developed SQL migration scripts to synchronize data from master DB to client DB, improving data consistency"
     ]
   };
   
@@ -20,12 +20,12 @@ const Experience = ({ styles, deviceType }) => {
     <section id="experience" style={styles.sectionAlt}>
       <div style={styles.container}>
         <h2 style={styles.sectionTitle}>Experience</h2>
-        
-        <div style={styles.card}>
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'flex-start', 
+
+        <div style={{ ...styles.card, paddingLeft: '55px' }}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
             marginBottom: '16px',
             flexDirection: deviceType.isMobile ? 'column' : 'row',
             gap: deviceType.isMobile ? '12px' : '0'
@@ -40,7 +40,7 @@ const Experience = ({ styles, deviceType }) => {
               </h3>
               <p style={{ 
                 fontSize: deviceType.isMobile ? '18px' : '20px', 
-                color: '#2563EB', 
+                color: styles.colors.accent, 
                 fontWeight: '500' 
               }}>
                 {experience.role}
@@ -57,7 +57,7 @@ const Experience = ({ styles, deviceType }) => {
                 {experience.period}
               </p>
             </div>
-            {!deviceType.isMobile && <Briefcase size={32} color="#2563EB" />}
+            {!deviceType.isMobile && <Briefcase size={32} color={styles.colors.accent} />}
           </div>
           
           <div style={{ marginBottom: '24px' }}>

@@ -1,5 +1,5 @@
 // components/Projects.jsx
-import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
+import { ChevronLeft, ChevronRight, Calendar, ExternalLink } from "lucide-react";
 import { useState } from "react";
 
 const Projects = ({ styles, deviceType }) => {
@@ -30,6 +30,10 @@ const Projects = ({ styles, deviceType }) => {
         "Reduced AI response time from 2 minutes to 30 seconds via Redis caching",
         "Secured 300+ concurrent sessions with JWT, RBAC, and auto-scaled GKE infrastructure",
       ],
+      links: {
+        live: "https://fedbridge.app/",
+        press: "https://www.cbsnews.com/sanfrancisco/news/san-jose-university-students-fedbridge-ai-app/"
+      }
     },
     {
       title: "Reservation Table",
@@ -53,8 +57,63 @@ const Projects = ({ styles, deviceType }) => {
         "Handled 1K+ concurrent requests with Kubernetes auto-scaling",
         "Implemented restaurant suggestion engine for personalized recommendations",
       ],
+      links: {
+        repo: "https://github.com/gopinathsjsu/team-project-20201-codecrafters"
+      }
     },
+    {
+      title: "Inventix",
+      role: "Fullstack Developer",
+      period: "Dec 2023 – Feb 2024",
+      description:
+        "Inventory management system built with microservices architecture to improve scalability, security, and real-time operations across ordering and shipping.",
+      tech: [
+        "Java",
+        "Spring Boot",
+        "Spring Cloud Gateway",
+        "Eureka",
+        "SQL",
+        "Microservices",
+        "RabbitMQ",
+        "Docker",
+        "GKE",
+        "SwiftUI"
+      ],
+      highlights: [
+        "Designed and developed microservices-based inventory modules with Spring Boot for modularity and scalability",
+        "Implemented authentication and authorization via Spring Cloud Gateway + Eureka for secure service-to-service communication",
+        "Built RESTful APIs consumed by a SwiftUI app for real-time inventory and order management",
+        "Integrated RabbitMQ for order tracking and shipping events to increase responsiveness and reliability",
+        "Containerized all services with Docker and deployed to GKE with Load Balancer for high availability"
+      ],
+      links: {
+        repo: "https://github.com/DatTriTat/Inventix"
+      }
+    }
   ];
+
+  const renderLinks = (links) => {
+    if (!links) return null;
+    return (
+      <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "16px" }}>
+        {links.live && (
+          <a href={links.live} style={{ ...styles.secondaryButton, display: "inline-flex", alignItems: "center", gap: 8 }} target="_blank" rel="noopener noreferrer">
+            <ExternalLink size={16} /> Live
+          </a>
+        )}
+        {links.repo && (
+          <a href={links.repo} style={{ ...styles.secondaryButton, display: "inline-flex", alignItems: "center", gap: 8 }} target="_blank" rel="noopener noreferrer">
+            <ExternalLink size={16} /> GitHub
+          </a>
+        )}
+        {links.press && (
+          <a href={links.press} style={{ ...styles.secondaryButton, display: "inline-flex", alignItems: "center", gap: 8 }} target="_blank" rel="noopener noreferrer">
+            <ExternalLink size={16} /> Press
+          </a>
+        )}
+      </div>
+    );
+  };
 
   return (
     <section id="projects" style={styles.section}>
@@ -70,7 +129,7 @@ const Projects = ({ styles, deviceType }) => {
           >
             {projects.map((project, index) => (
               <div key={index} style={styles.projectSlide}>
-                <div style={styles.cardGradient}>
+                <div style={{ ...styles.cardGradient, paddingLeft: "55px" }}>
                   <div style={{ marginBottom: "24px" }}>
                     <h3
                       style={{
@@ -85,7 +144,7 @@ const Projects = ({ styles, deviceType }) => {
                     <p
                       style={{
                         fontSize: deviceType.isMobile ? "16px" : "20px",
-                        color: "#2563EB",
+                        color: styles.colors.accent,
                         fontWeight: "500",
                         marginBottom: "8px",
                       }}
@@ -156,6 +215,8 @@ const Projects = ({ styles, deviceType }) => {
                         </li>
                       ))}
                     </ul>
+
+                    {renderLinks(project.links)}
                   </div>
                 </div>
               </div>

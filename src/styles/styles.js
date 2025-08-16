@@ -1,17 +1,33 @@
-// styles/styles.js - File styles với responsive support
+// styles/styles.js - Platinum (Silver/Gray) theme with responsive support
 
-// Helper function để check kích thước màn hình
+// Helper function to check screen size
 export const getDeviceType = (width) => ({
   isMobile: width <= 768,
   isTablet: width > 768 && width <= 1024,
   isDesktop: width > 1024
 });
 
-// Function tạo responsive styles dựa trên window width
+// Function to create responsive styles based on window width
 export const getResponsiveStyles = (windowWidth) => {
   const { isMobile, isTablet } = getDeviceType(windowWidth);
-  
+
+  // Platinum palette
+  const colors = {
+    textPrimary: "#111827",      // near-black
+    textSecondary: "#6B7280",    // slate 500
+    accent: "#8A8F98",           // metallic slate
+    accentStrong: "#2F3B47",     // graphite
+    silverLight: "#F5F7FA",
+    silver: "#E5E7EB",
+    silverMid: "#D5DAE1",
+    silverDark: "#C9CDD3",
+    panel: "#FFFFFF",
+    panelAlt: "#F6F7F9"
+  };
+
   return {
+    colors,
+
     container: {
       maxWidth: "1200px",
       margin: "0 auto",
@@ -26,6 +42,7 @@ export const getResponsiveStyles = (windowWidth) => {
       zIndex: 50,
       transition: "all 0.3s ease",
       padding: "16px 0",
+      borderBottom: "1px solid rgba(0,0,0,0.06)",
     },
 
     navContent: {
@@ -37,7 +54,8 @@ export const getResponsiveStyles = (windowWidth) => {
     logo: {
       fontSize: isMobile ? "20px" : "24px",
       fontWeight: "bold",
-      color: "#111827",
+      color: colors.textPrimary,
+      letterSpacing: "0.2px"
     },
 
     navLinks: {
@@ -57,7 +75,7 @@ export const getResponsiveStyles = (windowWidth) => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      background: "linear-gradient(135deg, #F9FAFB 0%, #DBEAFE 100%)",
+      background: `linear-gradient(135deg, ${colors.silverLight} 0%, ${colors.silver} 100%)`,
       padding: isMobile ? "80px 16px 24px" : "80px 24px 24px",
     },
 
@@ -74,19 +92,20 @@ export const getResponsiveStyles = (windowWidth) => {
       fontSize: isMobile ? "32px" : isTablet ? "40px" : "48px",
       fontWeight: "bold",
       marginBottom: "16px",
-      color: "#111827",
+      color: colors.textPrimary,
+      letterSpacing: "0.3px"
     },
 
     heroSubtitle: {
       fontSize: isMobile ? "18px" : "24px",
-      color: "#2563EB",
+      color: colors.accentStrong,
       fontWeight: "600",
       marginBottom: "16px",
     },
 
     heroDescription: {
       fontSize: isMobile ? "16px" : "18px",
-      color: "#6B7280",
+      color: colors.textSecondary,
       lineHeight: "1.8",
       marginBottom: "24px",
     },
@@ -101,25 +120,26 @@ export const getResponsiveStyles = (windowWidth) => {
 
     primaryButton: {
       padding: "12px 24px",
-      backgroundColor: "#2563EB",
-      color: "white",
-      border: "none",
-      borderRadius: "8px",
-      fontWeight: "600",
+      background: `linear-gradient(180deg, ${colors.silverLight} 0%, ${colors.silver} 100%)`,
+      color: colors.textPrimary,
+      border: `1px solid ${colors.silverDark}`,
+      borderRadius: "10px",
+      fontWeight: "700",
       cursor: "pointer",
       textDecoration: "none",
       display: "inline-block",
-      transition: "background-color 0.3s ease",
+      transition: "all 0.3s ease",
       textAlign: "center",
       width: isMobile ? "100%" : "auto",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.06), inset 0 1px rgba(255,255,255,0.6)"
     },
 
     secondaryButton: {
       padding: "12px 24px",
       backgroundColor: "transparent",
-      color: "#111827",
-      border: "2px solid #D1D5DB",
-      borderRadius: "8px",
+      color: colors.textPrimary,
+      border: `1px solid ${colors.silverDark}`,
+      borderRadius: "10px",
       fontWeight: "600",
       cursor: "pointer",
       textDecoration: "none",
@@ -127,6 +147,22 @@ export const getResponsiveStyles = (windowWidth) => {
       transition: "all 0.3s ease",
       textAlign: "center",
       width: isMobile ? "100%" : "auto",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.05)"
+    },
+
+    linkButton: {
+      padding: "10px 16px",
+      background: "transparent",
+      color: colors.accentStrong,
+      border: `1px solid ${colors.silverDark}`,
+      borderRadius: "999px",
+      fontWeight: 600,
+      textDecoration: "none",
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "8px",
+      transition: "all 0.25s ease",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.05)"
     },
 
     socialLinks: {
@@ -157,9 +193,10 @@ export const getResponsiveStyles = (windowWidth) => {
       height: "100%",
       borderRadius: "50%",
       zIndex: 1,
-      background: "radial-gradient(circle at 60% 30%, #2563EB 50%, transparent 70%)",
-      animation: "blob-spin 4s cubic-bezier(.4,0,.2,1) infinite",
-      boxShadow: "0 0 50px 15px #2563eb55",
+      background: "radial-gradient(circle at 60% 30%, #18160ac5 55%, transparent 72%)",
+      animation: "blob-spin 8s ease-in-out infinite",
+      willChange: "transform, filter",
+      boxShadow: "0 0 50px 15px rgba(156,163,175,0.35)",
     },
 
     profileImage: {
@@ -169,7 +206,7 @@ export const getResponsiveStyles = (windowWidth) => {
       borderRadius: "50%",
       objectFit: "cover",
       zIndex: 2,
-      boxShadow: "0 8px 24px rgba(37,99,235,0.15)",
+      boxShadow: "0 8px 24px rgba(17,24,39,0.15)",
     },
 
     section: {
@@ -179,7 +216,7 @@ export const getResponsiveStyles = (windowWidth) => {
 
     sectionAlt: {
       padding: isMobile ? "40px 16px" : "80px 24px",
-      backgroundColor: "#F9FAFB",
+      backgroundColor: colors.panelAlt,
     },
 
     sectionTitle: {
@@ -187,23 +224,24 @@ export const getResponsiveStyles = (windowWidth) => {
       fontWeight: "bold",
       marginBottom: isMobile ? "32px" : "48px",
       textAlign: "center",
-      color: "#111827",
+      color: colors.textPrimary,
+      letterSpacing: "0.3px"
     },
 
     card: {
       backgroundColor: "white",
       borderRadius: "12px",
       padding: isMobile ? "20px" : "32px",
-      boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-      border: "1px solid #E5E7EB",
+      boxShadow: "0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -2px rgba(0,0,0,0.05)",
+      border: `1px solid ${colors.silver}`,
     },
 
     cardGradient: {
-      background: "linear-gradient(135deg, #F9FAFB 0%, #DBEAFE 100%)",
+      background: `linear-gradient(135deg, ${colors.panelAlt} 0%, ${colors.silverLight} 100%)`,
       borderRadius: "12px",
       padding: isMobile ? "20px" : "32px",
-      boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-      border: "1px solid #E5E7EB",
+      boxShadow: "0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -2px rgba(0,0,0,0.05)",
+      border: `1px solid ${colors.silver}`,
     },
 
     skillsGrid: {
@@ -216,14 +254,14 @@ export const getResponsiveStyles = (windowWidth) => {
       backgroundColor: "white",
       borderRadius: "12px",
       padding: isMobile ? "16px" : "24px",
-      boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-      border: "1px solid #E5E7EB",
+      boxShadow: "0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -2px rgba(0,0,0,0.05)",
+      border: `1px solid ${colors.silver}`,
     },
 
     skillCategoryTitle: {
       fontSize: isMobile ? "16px" : "18px",
       fontWeight: "600",
-      color: "#111827",
+      color: colors.textPrimary,
       marginBottom: "16px",
       display: "flex",
       alignItems: "center",
@@ -245,15 +283,17 @@ export const getResponsiveStyles = (windowWidth) => {
       fontWeight: "500",
       transition: "all 0.3s ease",
       cursor: "default",
+      border: `1px solid ${colors.silver}`,
     },
 
     techTag: {
       padding: "4px 12px",
-      backgroundColor: "#DBEAFE",
-      color: "#1E40AF",
+      backgroundColor: colors.silverLight,
+      color: colors.accentStrong,
       borderRadius: "20px",
       fontSize: isMobile ? "12px" : "14px",
       fontWeight: "500",
+      border: `1px solid ${colors.silver}`,
     },
 
     projectCarousel: {
@@ -279,8 +319,8 @@ export const getResponsiveStyles = (windowWidth) => {
       padding: isMobile ? "8px" : "12px",
       backgroundColor: "white",
       borderRadius: "50%",
-      border: "none",
-      boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+      border: `1px solid ${colors.silver}`,
+      boxShadow: "0 10px 15px -3px rgba(0,0,0,0.10)",
       cursor: "pointer",
       transition: "background-color 0.3s ease",
       display: "flex",
@@ -308,7 +348,7 @@ export const getResponsiveStyles = (windowWidth) => {
 
     dotActive: {
       width: "32px",
-      backgroundColor: "#2563EB",
+      backgroundColor: colors.accent,
       borderRadius: "4px",
     },
 
@@ -329,7 +369,7 @@ export const getResponsiveStyles = (windowWidth) => {
     bullet: {
       width: "8px",
       height: "8px",
-      backgroundColor: "#2563EB",
+      backgroundColor: colors.accent,
       borderRadius: "50%",
       marginTop: "8px",
       flexShrink: 0,
@@ -357,7 +397,7 @@ export const getResponsiveStyles = (windowWidth) => {
       left: 0,
       right: 0,
       backgroundColor: "white",
-      boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+      boxShadow: "0 10px 15px -3px rgba(0,0,0,0.1)",
       padding: "24px",
       display: "flex",
       flexDirection: "column",
@@ -376,7 +416,7 @@ export const getResponsiveStyles = (windowWidth) => {
     formInput: {
       padding: isMobile ? "12px" : "14px",
       borderRadius: "8px",
-      border: "1px solid #D1D5DB",
+      border: `1px solid ${colors.silver}`,
       fontSize: isMobile ? "14px" : "16px",
       width: "100%",
     },
@@ -384,7 +424,7 @@ export const getResponsiveStyles = (windowWidth) => {
     formTextarea: {
       padding: isMobile ? "12px" : "14px",
       borderRadius: "8px",
-      border: "1px solid #D1D5DB",
+      border: `1px solid ${colors.silver}`,
       fontSize: isMobile ? "14px" : "16px",
       resize: "vertical",
       width: "100%",

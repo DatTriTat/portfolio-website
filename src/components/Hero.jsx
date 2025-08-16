@@ -1,4 +1,3 @@
-// components/Hero.jsx
 import { Github, Linkedin, Mail, Download } from "lucide-react";
 
 const Hero = ({ styles, deviceType }) => {
@@ -20,8 +19,8 @@ const Hero = ({ styles, deviceType }) => {
             <a
               href="#projects"
               style={styles.primaryButton}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = "#1D4ED8")}
-              onMouseLeave={(e) => (e.target.style.backgroundColor = "#2563EB")}
+              onMouseEnter={(e) => (e.target.style.background = "linear-gradient(180deg, #ECEFF3 0%, #D5DAE1 100%)")}
+              onMouseLeave={(e) => (e.target.style.background = "linear-gradient(180deg, #F5F7FA 0%, #E5E7EB 100%)")}
             >
               View My Projects
             </a>
@@ -29,12 +28,12 @@ const Hero = ({ styles, deviceType }) => {
               href="#contact"
               style={styles.secondaryButton}
               onMouseEnter={(e) => {
-                e.target.style.borderColor = "#2563EB";
-                e.target.style.color = "#2563EB";
+                e.target.style.borderColor = '#C9CDD3';
+                e.target.style.color = styles.colors.accentStrong;
               }}
               onMouseLeave={(e) => {
-                e.target.style.borderColor = "#D1D5DB";
-                e.target.style.color = "#111827";
+                e.target.style.borderColor = '#E5E7EB';
+                e.target.style.color = '#111827';
               }}
             >
               Get In Touch
@@ -46,12 +45,12 @@ const Hero = ({ styles, deviceType }) => {
               target="_blank"
               rel="noopener noreferrer"
               onMouseEnter={(e) => {
-                e.target.style.borderColor = "#2563EB";
-                e.target.style.color = "#2563EB";
+                e.target.style.borderColor = '#C9CDD3';
+                e.target.style.color = styles.colors.accentStrong;
               }}
               onMouseLeave={(e) => {
-                e.target.style.borderColor = "#D1D5DB";
-                e.target.style.color = "#111827";
+                e.target.style.borderColor = '#E5E7EB';
+                e.target.style.color = '#111827';
               }}
             >
               <Download
