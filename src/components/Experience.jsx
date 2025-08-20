@@ -9,7 +9,7 @@ const Experience = ({ styles, deviceType }) => {
     highlights: [
       "Developed backend features using ABP framework for a medical credential application",
       "Implemented interactive UI components using Blazor, improving credential submission workflows",
-      "Enhanced system stability by 40% through optimized Redis-based state caching",
+      "Used Redis to cache common reads so pages load more consistently and quickly",
       "Developed automation scripts to streamline regression testing",
       "Authored technical documentation and system architecture summaries",
       "Developed SQL migration scripts to synchronize data from master DB to client DB, improving data consistency"

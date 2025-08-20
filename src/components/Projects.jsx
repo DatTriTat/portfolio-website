@@ -26,9 +26,9 @@ const Projects = ({ styles, deviceType }) => {
       ],
       highlights: [
         "Architected scalable backend with microservices and real-time collaboration via WebSocket + Redis Pub/Sub",
-        "Increased job matching accuracy by 40% using OpenAI and MongoDB Vector Search",
-        "Reduced AI response time from 2 minutes to 30 seconds via Redis caching",
-        "Secured 300+ concurrent sessions with JWT, RBAC, and auto-scaled GKE infrastructure",
+        "Improved resume-to-job suggestions by adding embeddings and MongoDB Vector Search.",
+        "Deployed the API on GKE and set up autoscaling and traffic routing by using HPA, node pool autoscaling, and Ingress",
+        "Kept APIs safe by applying JWT, role-based access, and basic rate limits.",
       ],
       links: {
         live: "https://fedbridge.app/",
@@ -52,10 +52,10 @@ const Projects = ({ styles, deviceType }) => {
         "React.js",
       ],
       highlights: [
-        "Built reservation system using Redis and RabbitMQ, cutting DB load by 60%",
+        "Reduced database pressure by handling expiration and status changes asynchronously with Redis and RabbitMQ delay queues.",
         "Improved backend performance through MongoDB indexing and Redis caching",
-        "Handled 1K+ concurrent requests with Kubernetes auto-scaling",
-        "Implemented restaurant suggestion engine for personalized recommendations",
+        "Deployed on GKE with autoscaling and load balancing, and secured the API using JWT and role-based access controls",
+        "Implemented restaurant suggestion system for personalized recommendations",
       ],
       links: {
         repo: "https://github.com/gopinathsjsu/team-project-20201-codecrafters"
