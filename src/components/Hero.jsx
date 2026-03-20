@@ -7,12 +7,13 @@ const Hero = ({ styles, deviceType }) => {
         <div>
           <h1 style={styles.heroTitle}>Dat Tri Tat</h1>
           <p style={styles.heroSubtitle}>
-            Backend Developer & System Architect
+            Full-Stack Software Engineer
           </p>
           <p style={styles.heroDescription}>
-            Experienced in building cloud-native applications and scalable
-            backend systems. Specialized in distributed services, modern APIs,
-            and real-time applications.
+            Software engineer with experience building full-stack applications,
+            cloud-native backends, and AI-powered platforms. Skilled in
+            microservices, real-time systems, and deploying production-ready
+            services on AWS and GCP.
           </p>
 
           <div style={styles.buttonGroup}>

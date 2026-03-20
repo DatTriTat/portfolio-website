@@ -8,27 +8,20 @@ const Projects = ({ styles, deviceType }) => {
   const projects = [
     {
       title: "FedBridge",
-      role: "Founder, System Architecture Engineer",
+      role: "Founder, Full-Stack Engineer",
       period: "Feb 2025 – Present",
       description:
-        "AI-powered career platform featured by CBS News, supporting federal workers with job path discovery and mock interviews",
+        "AI-powered career platform featured by CBS News, supporting federal workers with job path discovery, mock interviews, and personalized upskilling.",
       tech: [
-        "Node.js",
-        "Express.js",
-        "WebSocket",
-        "Redis",
-        "OpenAI",
-        "Langchain",
-        "MongoDB",
-        "Docker",
-        "Kubernetes",
-        "GCP",
+        "React.js", "Node.js", "Express.js", "WebSocket", "Redis",
+        "OpenAI", "LangChain", "MongoDB", "Docker", "Kubernetes", "GCP", "AssemblyAI",
       ],
       highlights: [
-        "Architected scalable backend with microservices and real-time collaboration via WebSocket + Redis Pub/Sub",
-        "Improved resume-to-job suggestions by adding embeddings and MongoDB Vector Search.",
-        "Deployed the API on GKE and set up autoscaling and traffic routing by using HPA, node pool autoscaling, and Ingress",
-        "Kept APIs safe by applying JWT, role-based access, and basic rate limits.",
+        "Featured by CBS News as an AI-powered career platform supporting federal workers with job path discovery, mock interviews, and personalized upskilling.",
+        "Built a full-stack app with a React frontend and a Node.js/Express backend, exposing REST APIs and WebSocket endpoints for real-time interview rooms.",
+        "Integrated OpenAI and LangChain with MongoDB Vector Search, adding caching, input validation, and prompt tuning to improve AI response time by around 40% compared to the first version.",
+        "Implemented a Python FastAPI agent microservice that joins interview rooms, streams audio, and uses AssemblyAI and Redis to generate and store real-time interview transcripts.",
+        "Containerized services with Docker and deployed on GKE with autoscaling, Ingress, and JWT/RBAC security, keeping the platform responsive under demo traffic and separating user roles.",
       ],
       links: {
         live: "https://fedbridge.app/",
@@ -36,59 +29,39 @@ const Projects = ({ styles, deviceType }) => {
       }
     },
     {
-      title: "Reservation Table",
-      role: "Backend Developer",
-      period: "Feb 2025 – May 2025",
+      title: "Smart Car Cloud Services",
+      role: "Full-Stack Engineer",
+      period: "Sep 2025 – Dec 2025",
       description:
-        "Booking platform for Bay Area restaurants with search, booking, and management features",
+        "Full-stack smart car cloud application with a React (TypeScript) dashboard and a Node.js/Express API for managing vehicles and service data.",
       tech: [
-        "Java",
-        "Spring Boot",
-        "MongoDB",
-        "Redis",
-        "RabbitMQ",
-        "JWT",
-        "Twilio",
-        "React.js",
+        "Node.js", "Express", "PostgreSQL", "MongoDB", "Redis",
+        "AWS EC2", "Docker", "React", "TypeScript", "AWS Cognito",
       ],
       highlights: [
-        "Reduced database pressure by handling expiration and status changes asynchronously with Redis and RabbitMQ delay queues.",
-        "Improved backend performance through MongoDB indexing and Redis caching",
-        "Deployed on GKE with autoscaling and load balancing, and secured the API using JWT and role-based access controls",
-        "Implemented restaurant suggestion system for personalized recommendations",
+        "Built a full-stack smart car cloud app with a React (TypeScript) dashboard and a Node.js/Express API so users can manage vehicles and service data.",
+        "Designed REST APIs for vehicle data, user accounts, and service operations using PostgreSQL and MongoDB, and used Redis to cache frequent reads to reduce repeated database queries and make responses faster and more consistent.",
+        "Integrated AWS Cognito so users sign in securely and call protected API routes with JWT tokens, improving security and user access control.",
+        "Containerized the backend with Docker and deployed it on AWS EC2 inside a VPC, setting up auto-scaling and security groups with private services and a public-facing frontend entry point to improve reliability and isolate internal resources.",
       ],
-      links: {
-        repo: "https://github.com/gopinathsjsu/team-project-20201-codecrafters"
-      }
+      links: {}
     },
     {
-      title: "Inventix",
-      role: "Fullstack Developer",
-      period: "Dec 2023 – Feb 2024",
+      title: "Market Agent",
+      role: "Full-Stack Engineer",
+      period: "Jan 2025 – Jun 2025",
       description:
-        "Inventory management system built with microservices architecture to improve scalability, security, and real-time operations across ordering and shipping.",
+        "Stock market AI agent with a React dashboard and FastAPI backend that answers user questions using end-of-day OHLCV data and grounded LLM prompts.",
       tech: [
-        "Java",
-        "Spring Boot",
-        "Spring Cloud Gateway",
-        "Eureka",
-        "SQL",
-        "Microservices",
-        "RabbitMQ",
-        "Docker",
-        "GKE",
-        "SwiftUI"
+        "Python", "FastAPI", "React", "Redis", "MongoDB", "OpenAI", "EODHD", "Docker", "AWS",
       ],
       highlights: [
-        "Designed and developed microservices-based inventory modules with Spring Boot for modularity and scalability",
-        "Implemented authentication and authorization via Spring Cloud Gateway + Eureka for secure service-to-service communication",
-        "Built RESTful APIs consumed by a SwiftUI app for real-time inventory and order management",
-        "Integrated RabbitMQ for order tracking and shipping events to increase responsiveness and reliability",
-        "Containerized all services with Docker and deployed to GKE with Load Balancer for high availability"
+        "Built a React dashboard and FastAPI backend for a stock market agent that answers user questions using end of day OHLCV data stored in MongoDB and grounded LLM prompts.",
+        "Implemented Redis session caching with TTL to preserve multi-turn conversation history across requests.",
+        "Optimized daily ingestion by using EODHD bulk last day data and MongoDB bulk upserts instead of per symbol polling to stay within API limits.",
+        "Deployed the React frontend and FastAPI backend on AWS EC2, configuring environment variables and production settings.",
       ],
-      links: {
-        repo: "https://github.com/DatTriTat/Inventix"
-      }
+      links: {}
     }
   ];
 

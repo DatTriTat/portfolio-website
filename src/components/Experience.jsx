@@ -3,19 +3,17 @@ import { Calendar, Briefcase } from 'lucide-react';
 const Experience = ({ styles, deviceType }) => {
   const experience = {
     company: "Softlogi",
-    role: "Software Engineering Intern",
-    period: "Jun 2025 – Present",
+    role: "Full-Stack Software Engineering Intern",
+    period: "Jun 2025 – Sep 2025",
     tech: [".NET", "C#", "Blazor", "ASP.NET Boilerplate", "SQL", "Redis", "SQL Server"],
     highlights: [
-      "Developed backend features using ABP framework for a medical credential application",
-      "Implemented interactive UI components using Blazor, improving credential submission workflows",
-      "Used Redis to cache common reads so pages load more consistently and quickly",
-      "Developed automation scripts to streamline regression testing",
-      "Authored technical documentation and system architecture summaries",
-      "Developed SQL migration scripts to synchronize data from master DB to client DB, improving data consistency"
+      "Built and maintained backend features and APIs for a medical credentialing platform used by over 100 internal staff.",
+      "Improved form validation and Blazor workflows to reduce common input mistakes and re-submissions on credential forms.",
+      "Designed and ran dozens of white-box and black-box test cases and added automation scripts to reduce repeated manual regression work before each release.",
+      "Added Redis caching for frequent read queries and wrote SQL migration scripts to sync data for 8 client databases, reducing manual data update work for the team."
     ]
   };
-  
+
   return (
     <section id="experience" style={styles.sectionAlt}>
       <div style={styles.container}>
@@ -31,25 +29,25 @@ const Experience = ({ styles, deviceType }) => {
             gap: deviceType.isMobile ? '12px' : '0'
           }}>
             <div>
-              <h3 style={{ 
-                fontSize: deviceType.isMobile ? '20px' : '24px', 
-                fontWeight: 'bold', 
-                color: '#111827' 
+              <h3 style={{
+                fontSize: deviceType.isMobile ? '20px' : '24px',
+                fontWeight: 'bold',
+                color: '#111827'
               }}>
                 {experience.company}
               </h3>
-              <p style={{ 
-                fontSize: deviceType.isMobile ? '18px' : '20px', 
-                color: styles.colors.accent, 
-                fontWeight: '500' 
+              <p style={{
+                fontSize: deviceType.isMobile ? '18px' : '20px',
+                color: styles.colors.accent,
+                fontWeight: '500'
               }}>
                 {experience.role}
               </p>
-              <p style={{ 
-                color: '#9CA3AF', 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '8px', 
+              <p style={{
+                color: '#9CA3AF',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
                 marginTop: '8px',
                 fontSize: deviceType.isMobile ? '14px' : '16px'
               }}>
@@ -59,7 +57,7 @@ const Experience = ({ styles, deviceType }) => {
             </div>
             {!deviceType.isMobile && <Briefcase size={32} color={styles.colors.accent} />}
           </div>
-          
+
           <div style={{ marginBottom: '24px' }}>
             <div style={styles.skillTags}>
               {experience.tech.map((tech, index) => (
@@ -67,7 +65,7 @@ const Experience = ({ styles, deviceType }) => {
               ))}
             </div>
           </div>
-          
+
           <ul style={styles.bulletList}>
             {experience.highlights.map((highlight, index) => (
               <li key={index} style={styles.bulletItem}>

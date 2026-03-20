@@ -19,7 +19,7 @@ const Contact = ({ styles, deviceType }) => {
       alert('Please fill in all fields');
       return;
     }
-    
+
     // Create mailto link
     const mailto = `mailto:tatdattri0306@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
@@ -31,13 +31,13 @@ const Contact = ({ styles, deviceType }) => {
     <section id="contact" style={styles.section}>
       <div style={{ ...styles.container, maxWidth: '800px' }}>
         <h2 style={styles.sectionTitle}>Let's Connect</h2>
-        <p style={{ 
-          fontSize: deviceType.isMobile ? '16px' : '20px', 
-          color: '#6B7280', 
-          marginBottom: deviceType.isMobile ? '32px' : '48px', 
-          textAlign: 'center' 
+        <p style={{
+          fontSize: deviceType.isMobile ? '16px' : '20px',
+          color: '#6B7280',
+          marginBottom: deviceType.isMobile ? '32px' : '48px',
+          textAlign: 'center'
         }}>
-          I'm always interested in discussing new opportunities and challenging projects. 
+          I'm always interested in discussing new opportunities and challenging projects.
           Feel free to reach out!
         </p>
 
@@ -73,11 +73,11 @@ const Contact = ({ styles, deviceType }) => {
           />
           <button
             onClick={handleSubmit}
-            style={{ 
-              ...styles.primaryButton, 
-              width: '150px', 
-              alignSelf: 'center', 
-              fontSize: deviceType.isMobile ? '16px' : '18px' 
+            style={{
+              ...styles.primaryButton,
+              width: '150px',
+              alignSelf: 'center',
+              fontSize: deviceType.isMobile ? '16px' : '18px'
             }}
             onMouseEnter={(e) => (e.target.style.background = "linear-gradient(180deg, #ECEFF3 0%, #D5DAE1 100%)")}
             onMouseLeave={(e) => (e.target.style.background = "linear-gradient(180deg, #F5F7FA 0%, #E5E7EB 100%)")}
@@ -87,20 +87,20 @@ const Contact = ({ styles, deviceType }) => {
         </div>
 
         {/* Phone Button */}
-        <div style={{ 
-          ...styles.buttonGroup, 
-          justifyContent: 'center', 
-          marginBottom: '32px', 
-          flexDirection: deviceType.isMobile ? 'column' : 'row' 
+        <div style={{
+          ...styles.buttonGroup,
+          justifyContent: 'center',
+          marginBottom: '32px',
+          flexDirection: deviceType.isMobile ? 'column' : 'row'
         }}>
-          <a 
-            href="tel:408-805-1757" 
-            style={{ 
-              ...styles.secondaryButton, 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '8px', 
-              justifyContent: 'center' 
+          <a
+            href="tel:408-805-1757"
+            style={{
+              ...styles.secondaryButton,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              justifyContent: 'center'
             }}
             onMouseEnter={(e) => {
               e.target.style.borderColor = '#C9CDD3';
@@ -115,11 +115,11 @@ const Contact = ({ styles, deviceType }) => {
             408-805-1757
           </a>
         </div>
-        
+
         {/* Social Links */}
         <div style={{ ...styles.socialLinks, justifyContent: 'center' }}>
-          <a 
-            href="https://github.com/dattritat" 
+          <a
+            href="https://github.com/dattritat"
             style={{
               padding: '12px',
               backgroundColor: '#F3F4F6',
@@ -134,8 +134,8 @@ const Contact = ({ styles, deviceType }) => {
           >
             <Github size={24} color="#4B5563" />
           </a>
-          <a 
-            href="https://linkedin.com/in/dattritat/" 
+          <a
+            href="https://linkedin.com/in/dattritat/"
             style={{
               padding: '12px',
               backgroundColor: '#F3F4F6',
