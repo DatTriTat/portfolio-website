@@ -1,156 +1,56 @@
-import React, { useState } from 'react';
-import { Github, Linkedin, Mail, Phone } from 'lucide-react';
+import { useState } from "react";
+import { Check, Copy, Github, Linkedin, Phone } from "lucide-react";
+import { profile } from "../data/content";
 
-const Contact = ({ styles, deviceType }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
+const Contact = () => {
+  const [copied, setCopied] = useState(false);
 
-  const handleChange = (field, value) => {
-    setFormData({ ...formData, [field]: value });
-  };
-
-  const handleSubmit = () => {
-    // Validate form
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-      alert('Please fill in all fields');
-      return;
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${profile.email}`;
     }
-
-    // Create mailto link
-    const mailto = `mailto:tatdattri0306@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    )}`;
-    window.location.href = mailto;
   };
 
   return (
-    <section id="contact" style={styles.section}>
-      <div style={{ ...styles.container, maxWidth: '800px' }}>
-        <h2 style={styles.sectionTitle}>Let's Connect</h2>
-        <p style={{
-          fontSize: deviceType.isMobile ? '16px' : '20px',
-          color: '#6B7280',
-          marginBottom: deviceType.isMobile ? '32px' : '48px',
-          textAlign: 'center'
-        }}>
-          I'm always interested in discussing new opportunities and challenging projects.
-          Feel free to reach out!
+    <section id="contact" className="section contact">
+      <div className="container">
+        <h2 className="section-title">Get in touch</h2>
+        <p className="contact-lead">
+          I'm open to software engineering roles and interesting projects. Email is the fastest way to reach me.
         </p>
 
-        {/* Form Container */}
-        <div style={styles.formContainer}>
-          <input
-            type="text"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={(e) => handleChange('name', e.target.value)}
-            style={styles.formInput}
-          />
-          <input
-            type="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={(e) => handleChange('email', e.target.value)}
-            style={styles.formInput}
-          />
-          <input
-            type="text"
-            placeholder="Subject"
-            value={formData.subject}
-            onChange={(e) => handleChange('subject', e.target.value)}
-            style={styles.formInput}
-          />
-          <textarea
-            placeholder="Message"
-            rows={6}
-            value={formData.message}
-            onChange={(e) => handleChange('message', e.target.value)}
-            style={styles.formTextarea}
-          />
-          <button
-            onClick={handleSubmit}
-            style={{
-              ...styles.primaryButton,
-              width: '150px',
-              alignSelf: 'center',
-              fontSize: deviceType.isMobile ? '16px' : '18px'
-            }}
-            onMouseEnter={(e) => (e.target.style.background = "linear-gradient(180deg, #ECEFF3 0%, #D5DAE1 100%)")}
-            onMouseLeave={(e) => (e.target.style.background = "linear-gradient(180deg, #F5F7FA 0%, #E5E7EB 100%)")}
-          >
-            Send
+        <div className="contact-email">
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+          <button type="button" className="btn btn-small btn-outline" onClick={copyEmail}>
+            {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+            {copied ? "Copied" : "Copy email"}
           </button>
         </div>
 
-        {/* Phone Button */}
-        <div style={{
-          ...styles.buttonGroup,
-          justifyContent: 'center',
-          marginBottom: '32px',
-          flexDirection: deviceType.isMobile ? 'column' : 'row'
-        }}>
-          <a
-            href="tel:408-805-1757"
-            style={{
-              ...styles.secondaryButton,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              justifyContent: 'center'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.borderColor = '#C9CDD3';
-              e.target.style.color = styles.colors.accentStrong;
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.borderColor = '#E5E7EB';
-              e.target.style.color = '#111827';
-            }}
-          >
-            <Phone size={20} />
-            408-805-1757
-          </a>
-        </div>
-
-        {/* Social Links */}
-        <div style={{ ...styles.socialLinks, justifyContent: 'center' }}>
-          <a
-            href="https://github.com/dattritat"
-            style={{
-              padding: '12px',
-              backgroundColor: '#F3F4F6',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'background-color 0.3s ease'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E5E7EB'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
-          >
-            <Github size={24} color="#4B5563" />
-          </a>
-          <a
-            href="https://linkedin.com/in/dattritat/"
-            style={{
-              padding: '12px',
-              backgroundColor: '#F3F4F6',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'background-color 0.3s ease'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E5E7EB'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
-          >
-            <Linkedin size={24} color="#4B5563" />
-          </a>
-        </div>
+        <ul className="contact-links">
+          <li>
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+              <Linkedin size={20} aria-hidden="true" />
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href={profile.github} target="_blank" rel="noopener noreferrer">
+              <Github size={20} aria-hidden="true" />
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a href={`tel:${profile.phone}`}>
+              <Phone size={20} aria-hidden="true" />
+              {profile.phone}
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
   );

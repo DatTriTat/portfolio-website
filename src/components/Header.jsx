@@ -1,68 +1,99 @@
-import { Menu, X } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import Monogram from "./Monogram";
+import { profile } from "../data/content";
 
-const Header = ({ isMenuOpen, setIsMenuOpen, scrolled, styles, deviceType }) => {
-  const navItems = ['Home', 'About', 'Experience', 'Projects', 'Skills', 'Contact'];
+const NAV = [
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "skills", label: "Skills" },
+  { id: "contact", label: "Contact" },
+];
 
-  const navStyle = {
-    ...styles.nav,
-    backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.8)',
-    backdropFilter: 'blur(10px)',
-    boxShadow: scrolled ? '0 10px 15px -3px rgba(0, 0, 0, 0.08)' : 'none'
-  };
+const Header = () => {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("");
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Highlight the section currently in the middle of the viewport.
+  useEffect(() => {
+    const sections = NAV.map(({ id }) => document.getElementById(id)).filter(Boolean);
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    const onResize = () => window.innerWidth > 860 && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [open]);
 
   return (
-    <nav style={navStyle}>
-      <div style={styles.container}>
-        <div style={styles.navContent}>
-          <div style={styles.logo}>Dat Tri Tat</div>
+    <header className={`site-header${scrolled || open ? " is-scrolled" : ""}`}>
+      <div className="container header-row">
+        <a className="brand" href="#home" onClick={() => setOpen(false)}>
+          <Monogram className="brand-mark" />
+          <span>{profile.name}</span>
+        </a>
 
-          {/* Desktop Navigation */}
-          <div style={{
-            ...styles.navLinks,
-            display: deviceType.isMobile ? 'none' : 'flex'
-          }}>
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                style={styles.navLink}
-                onMouseEnter={(e) => e.target.style.color = styles.colors.accent}
-                onMouseLeave={(e) => e.target.style.color = '#4B5563'}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            style={{
-              ...styles.mobileMenuButton,
-              display: deviceType.isMobile ? 'block' : 'none'
-            }}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu Dropdown */}
-      {isMenuOpen && deviceType.isMobile && (
-        <div style={styles.mobileMenu}>
-          {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              style={{ ...styles.navLink, fontSize: '18px' }}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item}
+        <nav className="nav-desktop" aria-label="Primary">
+          {NAV.map(({ id, label }) => (
+            <a key={id} href={`#${id}`} className={active === id ? "is-active" : undefined}>
+              {label}
             </a>
           ))}
-        </div>
+          <a className="btn btn-small btn-outline" href={profile.resume} target="_blank" rel="noopener noreferrer">
+            Resume
+          </a>
+        </nav>
+
+        <button
+          className="nav-toggle"
+          type="button"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </div>
+
+      {open && (
+        <nav id="mobile-nav" className="nav-mobile" aria-label="Primary">
+          {NAV.map(({ id, label }) => (
+            <a key={id} href={`#${id}`} onClick={() => setOpen(false)}>
+              {label}
+            </a>
+          ))}
+          <a href={profile.resume} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+            Resume (PDF)
+          </a>
+        </nav>
       )}
-    </nav>
+    </header>
   );
 };
 

@@ -1,137 +1,23 @@
-import { Code, Database, Cloud, Terminal } from 'lucide-react';
+import { skills } from "../data/content";
+import TechSphere from "./TechSphere";
 
-const Skills = ({ styles, deviceType }) => {
-  const skills = {
-    "Programming Languages": ["Java", "JavaScript", "TypeScript", "Python", "SQL", "C#", "C/C++", "Swift"],
-    "Web Technologies": ["HTML", "CSS", "XML"],
-    "Frameworks & Libraries": ["Spring Boot", "Node.js", "Express.js", "Flask", "FastAPI", "React.js", "Blazor", "ASP.NET Boilerplate", "Next.js", "Java Swing"],
-    "Technologies": ["Redis", "WebSocket", "RabbitMQ", "Kafka", "Kubernetes (GKE, EKS)", "Docker", "PostgreSQL", "MongoDB", "MongoDB Vector Search", "DynamoDB", "Firebase", "MSSQL", "AWS (S3, Lambda, EC2, Cognito)", "OpenAI API", "LangChain", "AssemblyAI", "GraphQL", "RESTful APIs", "Microservices", "Nginx"],
-    "Developer Tools": ["Git", "GitHub Actions", "VS Code", "Postman", "Twilio", "Selenium"],
-    "Other Skills": ["Systems Architecture", "Object-Oriented Programming", "API Design", "CI/CD", "Agile Methodologies", "Testing", "Automation Testing", "Design Patterns", "Data Analysis", "Cloud Security", "Operating Systems", "Security (JWT, RBAC, Rate Limiting)"]
-  };
-
-  // Split skills for 2-column layout on desktop
-  const skillsArray = Object.entries(skills);
-  const halfLength = Math.ceil(skillsArray.length / 2);
-  const skillsFirstColumn = skillsArray.slice(0, halfLength);
-  const skillsSecondColumn = skillsArray.slice(halfLength);
-
-  const getIcon = (category) => {
-    switch(category) {
-      case "Programming Languages": return <Code size={20} color={styles.colors.accent} />;
-      case "Web Technologies": return <Terminal size={20} color={styles.colors.accent} />;
-      case "Frameworks & Libraries": return <Database size={20} color={styles.colors.accent} />;
-      case "Technologies": return <Cloud size={20} color={styles.colors.accent} />;
-      case "Developer Tools": return <Terminal size={20} color={styles.colors.accent} />;
-      case "Other Skills": return <Code size={20} color={styles.colors.accent} />;
-      default: return <Code size={20} color={styles.colors.accent} />;
-    }
-  };
-
-  // For mobile/tablet: show all skills in single column
-  // For desktop: show in 2 columns
-  const showSingleColumn = deviceType.isMobile || deviceType.isTablet;
-
-  return (
-    <section id="skills" style={styles.sectionAlt}>
-      <div style={styles.container}>
-        <h2 style={styles.sectionTitle}>Technical Skills</h2>
-
-        {showSingleColumn ? (
-          // Single column layout for mobile/tablet
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            {skillsArray.map(([category, items]) => (
-              <div key={category} style={styles.skillCategory}>
-                <h3 style={styles.skillCategoryTitle}>
-                  {getIcon(category)}
-                  {category}
-                </h3>
-                <div style={styles.skillTags}>
-                  {items.map((skill, index) => (
-                    <span
-                      key={index}
-                      style={styles.skillTag}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = '#E5E7EB';
-                        e.target.style.color = '#111827';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = '#F3F4F6';
-                        e.target.style.color = '#4B5563';
-                      }}
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          // Two column layout for desktop
-          <div style={styles.skillsGrid}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              {skillsFirstColumn.map(([category, items]) => (
-                <div key={category} style={styles.skillCategory}>
-                  <h3 style={styles.skillCategoryTitle}>
-                    {getIcon(category)}
-                    {category}
-                  </h3>
-                  <div style={styles.skillTags}>
-                    {items.map((skill, index) => (
-                      <span
-                        key={index}
-                        style={styles.skillTag}
-                        onMouseEnter={(e) => {
-                          e.target.style.backgroundColor = '#E5E7EB';
-                          e.target.style.color = '#111827';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.backgroundColor = '#F3F4F6';
-                          e.target.style.color = '#4B5563';
-                        }}
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+const Skills = () => (
+  <section id="skills" className="section section-raised">
+    <div className="container skills-grid">
+      <TechSphere />
+      <div>
+        <h2 className="section-title">Skills</h2>
+        <dl className="skill-list">
+          {skills.map(({ category, items }) => (
+            <div key={category} className="skill-row">
+              <dt>{category}</dt>
+              <dd>{items.join(", ")}</dd>
             </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              {skillsSecondColumn.map(([category, items]) => (
-                <div key={category} style={styles.skillCategory}>
-                  <h3 style={styles.skillCategoryTitle}>
-                    {getIcon(category)}
-                    {category}
-                  </h3>
-                  <div style={styles.skillTags}>
-                    {items.map((skill, index) => (
-                      <span
-                        key={index}
-                        style={styles.skillTag}
-                        onMouseEnter={(e) => {
-                          e.target.style.backgroundColor = '#E5E7EB';
-                          e.target.style.color = '#111827';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.backgroundColor = '#F3F4F6';
-                          e.target.style.color = '#4B5563';
-                        }}
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+          ))}
+        </dl>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Skills;

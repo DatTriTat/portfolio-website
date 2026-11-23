@@ -1,77 +1,54 @@
-import { Mail, MapPin, Phone, GraduationCap } from "lucide-react";
+import { MapPin } from "lucide-react";
+import { coursework, education, profile } from "../data/content";
 
-const About = ({ styles, deviceType }) => {
-  return (
-    <section id="about" style={styles.section}>
-      <div style={styles.container}>
-        <h2 style={styles.sectionTitle}>About Me</h2>
+const About = () => (
+  <section id="about" className="section">
+    <div className="container about-grid">
+      <figure className="about-photo">
+        <img src="/profile.jpg" alt="Portrait of Dat Tri Tat" width="420" height="420" loading="lazy" />
+        <figcaption>
+          <MapPin size={16} aria-hidden="true" />
+          {profile.location}
+        </figcaption>
+      </figure>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: deviceType.isMobile ? "24px" : "32px",
-            alignItems: "stretch",
-          }}
-        >
-          {/* Column 1: Education + Quick Info */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "24px", height: "100%" }}>
-            <div style={{ ...styles.card, backgroundColor: "#FFFFFF" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-                <GraduationCap size={24} color={styles.colors.accent} />
-                <h3 style={{ fontSize: deviceType.isMobile ? "18px" : "20px", fontWeight: "600" }}>
-                  Education
-                </h3>
-              </div>
-              <div style={{ marginBottom: "16px" }}>
-                <p style={{ fontWeight: "600", marginBottom: "4px", fontSize: deviceType.isMobile ? "14px" : "16px" }}>
-                  Master of Science in Software Engineering
-                </p>
-                <p style={{ color: "#6B7280", marginBottom: "4px", fontSize: deviceType.isMobile ? "14px" : "16px" }}>
-                  San Jose State University
-                </p>
-                <p style={{ fontSize: deviceType.isMobile ? "12px" : "14px", color: "#9CA3AF" }}>
-                  Jan 2025 – Expected Jun 2027
-                </p>
-              </div>
-              <div>
-                <p style={{ fontWeight: "600", marginBottom: "4px", fontSize: deviceType.isMobile ? "14px" : "16px" }}>
-                  Bachelor of Science in Software Engineering
-                </p>
-                <p style={{ color: "#6B7280", marginBottom: "4px", fontSize: deviceType.isMobile ? "14px" : "16px" }}>
-                  San Jose State University
-                </p>
-                <p style={{ fontSize: deviceType.isMobile ? "12px" : "14px", color: "#9CA3AF" }}>
-                  Aug 2021 – Dec 2024
-                </p>
-              </div>
-            </div>
+      <div className="about-body">
+        <h2 className="section-title">About</h2>
+        <p>
+          I'm a software engineer with a strong interest in backend development, cloud infrastructure, and AI
+          systems. I enjoy working on the parts of software that users never see but always depend on, from APIs and
+          databases to deployment and monitoring.
+        </p>
+        <p>
+          What draws me to this work is solving hard problems that have a real impact. I like digging into why a
+          system fails, finding ways to make it faster and more reliable, and seeing it hold up for the people who
+          rely on it. That same motivation led me to found FedBridge, an AI career platform for federal workers that
+          was featured by CBS News.
+        </p>
+        <p>
+          Through internships at IBM, T-Mobile, and Softlogi, I've worked on observability integrations with
+          OpenTelemetry, AI-assisted development workflows, API test automation with CI/CD, and backend services for
+          a healthcare platform. I'm currently pursuing a master's degree in Software Engineering at San Jose State
+          University.
+        </p>
 
-            <div style={{ ...styles.card, backgroundColor: "#FFFFFF" }}>
-              <h3 style={{ fontSize: deviceType.isMobile ? "18px" : "20px", fontWeight: "600", marginBottom: "16px" }}>
-                Quick Info
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                  <Phone size={20} color={styles.colors.accent} />
-                  <span style={{ fontSize: deviceType.isMobile ? "14px" : "16px" }}>408-805-1757</span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                  <Mail size={20} color={styles.colors.accent} />
-                  <span style={{ fontSize: deviceType.isMobile ? "14px" : "16px", wordBreak: "break-word" }}>tatdattri0306@gmail.com</span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                  <MapPin size={20} color={styles.colors.accent} />
-                  <span style={{ fontSize: deviceType.isMobile ? "14px" : "16px" }}>San Jose, CA</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <div className="education">
+          <h3>Education</h3>
+          <ul className="degree-list">
+            {education.map((e) => (
+              <li key={e.degree}>
+                <span className="degree">{e.degree}</span>
+                <span className="school">{e.school}</span>
+                <span className="period">{e.period}</span>
+              </li>
+            ))}
+          </ul>
+          <h4>Relevant coursework</h4>
+          <p className="coursework">{coursework.join(", ")}</p>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default About;

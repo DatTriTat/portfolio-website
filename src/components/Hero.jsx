@@ -1,94 +1,79 @@
-import { Github, Linkedin, Mail, Download } from "lucide-react";
+import { lazy, Suspense, useRef, useState } from "react";
+import { Download, Github, Linkedin, Mail } from "lucide-react";
+import Monogram from "./Monogram";
+import { profile } from "../data/content";
+import { useInView } from "../hooks/useInView";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 
-const Hero = ({ styles, deviceType }) => {
+const MonogramScene = lazy(() => import("./MonogramScene"));
+
+const supportsWebGL = () => {
+  try {
+    const canvas = document.createElement("canvas");
+    return Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl"));
+  } catch {
+    return false;
+  }
+};
+
+const Hero = () => {
+  const stageRef = useRef(null);
+  const inView = useInView(stageRef);
+  const reducedMotion = useReducedMotion();
+  const [webgl] = useState(supportsWebGL);
+  const words = profile.name.split(" ");
+
   return (
-    <section id="home" style={styles.heroSection}>
-      <div style={styles.heroGrid}>
-        <div>
-          <h1 style={styles.heroTitle}>Dat Tri Tat</h1>
-          <p style={styles.heroSubtitle}>
-            Full-Stack Software Engineer
-          </p>
-          <p style={styles.heroDescription}>
-            Software engineer with experience building full-stack applications,
-            cloud-native backends, and AI-powered platforms. Skilled in
-            microservices, real-time systems, and deploying production-ready
-            services on AWS and GCP.
+    <section id="home" className="hero">
+      <div className="container hero-grid">
+        <div className="hero-copy">
+          <p className="hero-now">
+            <span className="signal" aria-hidden="true" />
+            {profile.now.text}
           </p>
 
-          <div style={styles.buttonGroup}>
-            <a
-              href="#projects"
-              style={styles.primaryButton}
-              onMouseEnter={(e) => (e.target.style.background = "linear-gradient(180deg, #ECEFF3 0%, #D5DAE1 100%)")}
-              onMouseLeave={(e) => (e.target.style.background = "linear-gradient(180deg, #F5F7FA 0%, #E5E7EB 100%)")}
-            >
-              View My Projects
-            </a>
-            <a
-              href="#contact"
-              style={styles.secondaryButton}
-              onMouseEnter={(e) => {
-                e.target.style.borderColor = '#C9CDD3';
-                e.target.style.color = styles.colors.accentStrong;
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.borderColor = '#E5E7EB';
-                e.target.style.color = '#111827';
-              }}
-            >
-              Get In Touch
-            </a>
-            <a
-              href="/DatTriTat_Resume.pdf"
-              style={styles.secondaryButton}
-              download
-              target="_blank"
-              rel="noopener noreferrer"
-              onMouseEnter={(e) => {
-                e.target.style.borderColor = '#C9CDD3';
-                e.target.style.color = styles.colors.accentStrong;
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.borderColor = '#E5E7EB';
-                e.target.style.color = '#111827';
-              }}
-            >
-              <Download
-                size={16}
-                style={{ marginRight: 8, position: "relative", top: "2px" }}
-              />
-              Download My Resume
-            </a>
-          </div>
+          <h1 className="hero-name" aria-label={profile.name}>
+            {words.map((word, i) => (
+              <span className="hero-word" key={word + i} aria-hidden="true">
+                <span style={{ "--i": i }}>{word}</span>
+              </span>
+            ))}
+          </h1>
 
-          <div style={styles.socialLinks}>
-            <a href="https://github.com/dattritat" style={styles.socialLink}>
-              <Github size={24} />
+          <p className="hero-lead">
+            Software engineer building full-stack products, cloud-native backends, and observability tooling.
+            Founder of FedBridge, an AI career platform featured by CBS News.
+          </p>
+
+          <div className="hero-actions">
+            <a className="btn btn-primary" href={profile.resume} target="_blank" rel="noopener noreferrer">
+              <Download size={18} aria-hidden="true" />
+              Download resume
             </a>
-            <a
-              href="https://linkedin.com/in/dattritat/"
-              style={styles.socialLink}
-            >
-              <Linkedin size={24} />
+            <a className="btn btn-ghost" href={`mailto:${profile.email}`}>
+              <Mail size={18} aria-hidden="true" />
+              Email me
             </a>
-            <a href="mailto:tatdattri0306@gmail.com" style={styles.socialLink}>
-              <Mail size={24} />
-            </a>
+            <div className="hero-social">
+              <a className="icon-link" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <Github size={22} />
+              </a>
+              <a className="icon-link" href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <Linkedin size={22} />
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Profile Image - Hidden on Mobile */}
-        {!deviceType.isMobile && (
-          <div style={styles.profileImageContainer}>
-            <div style={styles.profileImageBg}></div>
-            <img
-              src="/profile.jpg"
-              alt="Dat Tri Tat"
-              style={styles.profileImage}
-            />
-          </div>
-        )}
+        <div className="hero-stage" ref={stageRef}>
+          {webgl ? (
+            <Suspense fallback={<Monogram className="hero-mark-fallback" />}>
+              <MonogramScene active={inView} reducedMotion={reducedMotion} />
+            </Suspense>
+          ) : (
+            <Monogram className="hero-mark-fallback" title="DT monogram" />
+          )}
+        </div>
       </div>
     </section>
   );
